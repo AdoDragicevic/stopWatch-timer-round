@@ -1,4 +1,4 @@
-// Prototype (properties and methods shared by all apps)
+// Prototype
 
 class Time {
     
@@ -19,7 +19,7 @@ class Time {
         //input values (shows currently running time)
         this.val = [];
 
-        //values to display when app is reset (time the user set or default time)
+        //values to display when app is reset (values the user set or default time)
         this.resetVal = [];
         ( () => {
             for(let i of this.inputs) {
@@ -33,6 +33,20 @@ class Time {
 
         //currently displayed app
         this.isDisplayed = false;
+
+        //event listeners
+        for(let btn of this.btns) btn.addEventListener( "click", () => {
+            if(this.isDisplayed) this[btn.innerText.toLowerCase()](); 
+        });
+
+        this.allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", null];
+
+        for(let input of this.inputs) input.addEventListener("input", e => {
+            if(this.isDisplayed) {
+                if( !this.allowedKeys.includes(e.data) ) input.value = null;
+                this.setTimeManually();
+            }
+        });
 
     }
 

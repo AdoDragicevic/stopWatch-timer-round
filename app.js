@@ -4,4 +4,4 @@ const inputs    = document.querySelectorAll(".display input"),
       switchBtn = document.querySelector("#btn-switch");
 
 //SETUP
-new SwitchBetweenApps( [ new StopWatch(true), new Timer(), new Round() ] );
+new SwitchBetweenApps( [ new StopWatch(true), new Timer() , new Round() ] );
