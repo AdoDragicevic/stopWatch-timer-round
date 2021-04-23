@@ -19,8 +19,13 @@ class Round extends Time {
 
     btnTxt = {
         //btn id : txt
-        reset: () => (!this.isRunning && !this.isDisableInputs) ? "Set" : "Reset",
-        start: () => this.isRunning ? "Stop" : "Start"
+        reset: () => {
+            if(this.isRunning || this.isDisableInputs) return "Reset";
+            return this.isSettingRoundTime ? "Set break" : "Set round";
+        },
+        start: () => {
+            return this.isRunning ? "Stop" : "Start";
+        }
     };
 
     
@@ -51,15 +56,16 @@ class Round extends Time {
 
     //switch between setting round duration / break duration
     set() {
-        this.isSettingRoundTime = this.isSettingRoundTime ? false : true;
+        this.isSettingRoundTime = !this.isSettingRoundTime;
         let values = this.isSettingRoundTime ? this.val : this.resetBreakVal;
         values.forEach( (val, i) => this.inputs[i].value = this.twoDigitNum(val) );
+        this.updateBtnTxt();
     };      
     
 
     //change between running rounds and breaks & increment this.rounds.currRound
     countRounds() {
-        this.isCountingRoundTime = this.isCountingRoundTime ? false : true;
+        this.isCountingRoundTime = !this.isCountingRoundTime;
         if(this.isCountingRoundTime) {
             this.resetVal.forEach( (val, i) => this.val[i] = val );
             this.val[this.val.length - 1] = ++this.currRound;

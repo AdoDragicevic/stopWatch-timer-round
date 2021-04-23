@@ -1,7 +1,7 @@
 //SELECTORS
-const inputs    = document.querySelectorAll(".display input"),
-      buttons   = document.querySelectorAll(".buttons .btn"),
-      switchBtn = document.querySelector("#btn-switch");
+const inputs    = document.querySelectorAll(".input"),
+      buttons   = document.querySelectorAll("#reset, #start"),
+      switchBtn = document.querySelector("#switch");
 
 //SETUP
-new SwitchBetweenApps( [ new StopWatch(true), new Timer() , new Round() ] );
+const apps = new SwitchBetweenApps( [ new Timer(), new Round(), new StopWatch(true) ] );

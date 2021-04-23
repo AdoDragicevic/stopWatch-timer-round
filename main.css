@@ -1,37 +1,229 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+html {
+    /* Default browser font-size is 16px; therefore 1 rem = 16px; now 1 rem = 10px; */
+    font-size: 62.5%;
+    height: 100%;
+
+    transition: all 15s;
+}
+
+
 body {
-    background-color: rgb(13, 25, 33);
-}
-
-h1, main {
+    box-sizing: border-box;
+    font-family: 'Monda', sans-serif;    
     text-align: center;
     color: #eee;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.display {
-    margin: 2rem auto;
+
+.header {
+    font-weight: 400;
+    font-size: 5rem;
+    margin-top: 3rem;
 }
 
-.display input {
+
+.inputs {
     display: inline-block;
-    width: 70px;
-    font-size: 4rem;
-    color: #eee;
-    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.inputs__box {
+    display: inline-block;    
+}
+
+
+.inputs__box:not(:first-child)::before {
+    content: ":";
+    display: inline-block;
+    text-align: inherit;
+    font-size: 9rem;
+    transform: translateY(-3rem);
+}
+
+
+.input {
+    color: inherit;
+    font-family: inherit;
+    text-align: inherit;
     background-color: transparent;
     border: none;
+    width: 22rem;
+    font-size: 15rem;
 }
 
-.display span {
-    display: inline-block;
-    font-size: 4rem;
-    transform: translateY(-6px);
+
+@media(max-width: 820px) {
+    .inputs__box:not(:first-child)::before {
+        transform: translateY(-2rem);
+    }
+    .input {
+        width: 18rem;
+        font-size: 13rem;
+    }
 }
 
-.buttons button{
+
+@media(max-width: 660px) {
+    .inputs__box:not(:first-child)::before {
+        font-size: 7rem;
+    }
+    .input {
+        width: 16rem;
+        font-size: 11rem;
+
+    }
+}
+
+
+@media(max-width: 580px) {
+    .inputs__box:not(:first-child)::before {
+        font-size: 5rem;
+        transform: translateY(-1.4rem);
+    }
+    .input {
+        width: 12rem;
+        font-size: 8rem;
+
+    }
+}
+
+
+@media(max-width: 460px) {
+    .input {
+        width: 8rem;
+        font-size: 5rem;
+    }
+}
+
+
+.line {
+    width: 100%;
+    position: absolute;
+    top: 70%;
+    left: 0;
+    height: 1px;
+    background:transparent;
+}
+
+
+.line::-webkit-progress-value {
+    background: red;
+}
+
+
+.line::-webkit-progress-bar {
+    background: transparent;
+}
+
+
+.checkbox {
+    width: 100%;
+    position: absolute;
+    top: 75%;
+    left: 0;
+}
+
+
+.laps-list {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 2rem;
+    list-style: none;
+    overflow: hidden;
+    overflow:auto;
+    height: 12.2vh;
+    width: 20rem;
+    opacity: .7;
+}
+
+
+.laps-list li:first-child {
+    color: red;
+}
+
+
+.buttons {
+    position: fixed;
+    bottom: 7vh;
+    width: 100%;
+    margin: 10px auto;
+}
+
+
+.btn {
     border-radius: 100px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: .8rem 0;
+    width: 15rem;
     outline: none;
-    width: 100px;
-    font-size: 1.4rem;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #eee;
+    border: .2px solid rgba(128, 128, 128, 0.5);
+    box-shadow: 0 1rem 4rem rgba(128, 128, 128, .1);
+    font-family: inherit;
+    margin-bottom: 1rem;
+    transition: all .2s;
+}
+
+
+.btn:not(:last-child) {
+    margin-right: .7rem;
+}
+
+
+.btn:hover {
+    box-shadow: 0 1.5rem 4rem rgba(128, 128, 128, .2);
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, .4);
+}
+
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 .5rem 1rem rgba(128, 128, 128, .2); 
+    color: #e2e2e2;
+}
+
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

@@ -34,13 +34,17 @@ class Time {
         //currently displayed app
         this.isDisplayed = false;
 
-        //event listeners
+        //btn click invokes method with same name as btn txt
         for(let btn of this.btns) btn.addEventListener( "click", () => {
-            if(this.isDisplayed) this[btn.innerText.toLowerCase()](); 
+            if(this.isDisplayed) {
+                let space = btn.innerText.indexOf(" ");
+                let firstWord = space !== -1 ? btn.innerText.slice(0, space) : btn.innerText;
+                this[firstWord.toLowerCase()](); 
+            }
         });
 
+        //update value when input value is cahnged
         this.allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", null];
-
         for(let input of this.inputs) input.addEventListener("input", e => {
             if(this.isDisplayed) {
                 if( !this.allowedKeys.includes(e.data) ) input.value = null;
@@ -132,7 +136,7 @@ class Time {
         }
         return true;
     }
-
+    
 
     //turn 100ms into 1s, 60s into 1m, 60m into 1h
     calcTime(timeAmount, limits, defaultTime, callback) {

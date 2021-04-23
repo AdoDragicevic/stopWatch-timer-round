@@ -3,59 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Styles common for all apps-->
-    <link id="mainStylesheet" rel="stylesheet" href="main.css">
-    <!--Additional individual styles-->
+    
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!--Styles common to all apps-->
+    <link rel="stylesheet" href="main.css">
+    <!--Dynamic individual styles-->
+    <link id="app-specific-CSS" rel="stylesheet" href="stopwatch.css">
 
-    <title>StopWatch | Timer | Rounds</title>
+    <title>StopWatch | Timer | Round</title>
 </head>
 <body>
 
     <header>
-        <h1>StopWatch</h1>
+        <em>
+            <h1 class="header">StopWatch</h1>
+        </em>
     </header>
 
     <main>
-        <div class="display">
-            <input type="text" maxlength="2" value="00" disabled>
-            <span>:</span>
-            <input type="text" maxlength="2" value="00" disabled>
-            <span>:</span>
-            <input type="text" maxlength="2" value="00" disabled>
-        </div>
-    
-        <div class="buttons">
+
+        <div class="inputs">
+
+            <div class="inputs__box">
+                <input class="input" type="text" maxlength="2" value="00">
+            </div>
             
-            <div class="main-btns">
-                <!-- basic functionality btns-->
-                <button id="reset" class="btn">Reset</button>
-                <button id="start" class="btn">Start</button>
-
-                <!--  -->
-
-                <!-- change between apps btn-->
-                <button id="btn-switch">Switch</button>
+            <div class="inputs__box">
+                <input class="input" type="text" maxlength="2" value="00">
             </div>
-        
+            
+            <div class="inputs__box">
+                <input class="input" type="text" maxlength="2" value="00">
+            </div>
+
         </div>
 
-
-        <!-- Unique content specific for individual apps-->
         <div class="app-specific-content">
+            
+            <div id="stopWatch">
+                <ul class="laps-list"></ul>
+            </div>
+            
+            <div id="timer">
 
-            <!--StopWatch-->
-            <div class="stopWatch">
-                <div class="laps">
-                    <ul class="laps-list"></ul>
+                <progress class="line" id="file" value="100" max="244"> </progress>
+                
+                <div class="checkbox">
+                    <input class="checkbox__input"type="checkbox" name="Sound" id="timer-checkbox" checked>
+                    <label class="checkbox__label" for="timer-checkbox">Play sound when time ends</label>
                 </div>
+            
+            </div>
+            
+            <div id="round">
+
+                <svg  class="circle">
+                    <circle 
+                        r="230" 
+                        fill="transparent" 
+                        stroke="green" 
+                        stroke-width="10" 
+                        transform="rotate(-90 200 200)"
+                        >
+                    </circle>
+                </svg>
+    
+                <div class="checkbox">
+                    <input class="checkbox__input"type="checkbox" name="Sound" id="timer-checkbox" checked>
+                    <label class="checkbox__label" for="timer-checkbox">Play sound when time ends</label>
+                </div>
+
             </div>
 
         </div>
 
+        <div class="buttons">
+            <button id="reset" class="btn btn--reset">Reset</button>
+            <button id="start" class="btn btn--reset">Start</button>
+            <button id="switch" class="btn btn--reset">Switch</button>
+        </div>
 
     </main>
-
-
 
     <!-- Keep timer running when browser tab not active -->
     <script src="hackTimer.js"></script>

@@ -1,21 +1,32 @@
-// Switch between apps; if apps use different inputs/btns pass all inputs and btns as arguments to the constructor;
+// Switch between apps; add listeners to btnSwitch and left/right keyboard arrows; update dissplay (if apps use different inputs/btns pass all inputs/btns as args to constructor)
 
 class SwitchBetweenApps {    
 
-    constructor(apps, btnSwitch = switchBtn, inputs = null, btns = null) {  
+    constructor(apps, btnSwitch = switchBtn, btns = null, inputs = null) {  
 
         apps[0].isDisplayed = true;
-        apps[0].updateDisplay();
-        btnSwitch.addEventListener( "click", () => this.updateDisplay( this.changeApp(apps), btns, inputs ) );
+        this.updateDisplay( apps[0], btns, inputs);
+
+        btnSwitch.addEventListener( "click", () => this.updateDisplay( this.changeApp(apps), btns, inputs) );
+        
+        //change apps with arrow keys, if inputs not focused
+        document.addEventListener( "keyup", e => {
+            if(e.key === "ArrowLeft" || e.key === "ArrowRight") {
+                for(let input of document.querySelectorAll("input")) if(input === document.activeElement) return;
+                let dirrection = e.key === "ArrowRight" ?  1 : -1;
+                this.updateDisplay( this.changeApp(apps, dirrection), btns, inputs );
+            }
+        });
 
     }
 
     
-    changeApp(apps) {
+    changeApp(apps, dirrection = 1) {
         let indx = apps.findIndex( app => app.isDisplayed === true);
         let currApp = apps[indx];
         currApp.isDisplayed = false;
-        currApp = apps[indx + 1] ? apps[indx + 1] : apps[0];
+        currApp = apps[indx + dirrection];
+        if(!currApp) currApp = dirrection === 1 ? apps[0] : apps[apps.length - 1];
         currApp.isDisplayed = true;
         return currApp;
     }
@@ -25,6 +36,7 @@ class SwitchBetweenApps {
         if(btns) this.hideExcessEl(app.btns, btns);
         if(inputs) this.hideExcessEl(app.inputs, inputs);
         this.hideAppSpecificContent(app);
+        this.changeCustomCSS(app.name);
         app.updateDisplay();
     }
     
@@ -37,11 +49,15 @@ class SwitchBetweenApps {
 
     //some apps have additional HTML content (div with id of that apps name), remove/display it
     hideAppSpecificContent(app) {
-        let content = document.querySelectorAll(".app-specific-content > *");
-        for(let div of content) {
-            div.style.display = div.className.toLowerCase() === app.name.toLowerCase() ? "" : "none";
+        for(let el of document.querySelectorAll(".app-specific-content > *")) {
+            el.style.display = el.id.toLowerCase() === app.name.toLowerCase() ? "" : "none";
         }
     }
 
+
+    //change href of custom CSS stylesheet
+    changeCustomCSS(appName) {
+        document.querySelector("#app-specific-CSS").setAttribute("href", `${appName.toLowerCase()}.css`);
+    }
 
 }
