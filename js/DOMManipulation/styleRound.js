@@ -26,7 +26,7 @@ class StyleRound extends Style {
 
     displayLastInput() {
         let input = document.querySelector(".inputs__box:last-child");
-        input.style.display = this.isRunning ? "none" : "";
+        input.style.display = (this.isRunning || this.isDisableInputs) ? "none" : "";
     }
 
 
