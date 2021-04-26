@@ -11,20 +11,18 @@
     <!--CSS-->
     <link rel="stylesheet" href="CSS/main.css">
 
-    <title>StopWatch | Timer | Round</title>
+    <title></title>
+    <link rel="icon" type="image/jpg" href="img/favcon.png"/>
 </head>
 <body>
 
     <header>
-        <em>
-            <h1 class="header">StopWatch</h1>
-        </em>
+        <em> <h1 class="header"></h1> </em>
     </header>
 
     <main>
 
         <div class="inputs">
-
             <span class="inputs__box">
                 <input id="input-1" class="input" type="text" maxlength="2" value="00">
                 <label class="inputs__label" for="input-1"></label>
@@ -43,28 +41,22 @@
                 <input id="input-3" class="input" type="text" maxlength="2" value="00">
                 <label class="inputs__label" for="input-3"></label>
             </span>
-
         </div>
 
         <div class="app-specific-content">
-            
             <div id="stopWatch">
                 <ul class="laps-list"></ul>
             </div>
             
             <div id="timer">
-
-                <progress class="line" id="file" value="100" max="244"> </progress>
-                
+                <progress class="line" id="file" value="1" max="1"> </progress>
                 <div class="checkbox">
                     <input class="checkbox__input"type="checkbox" name="Sound" id="timer-checkbox" checked>
                     <label class="checkbox__label" for="timer-checkbox">Play sound when time ends</label>
                 </div>
-            
             </div>
             
             <div id="round">
-
                 <svg  class="circle">
                     <circle 
                         r="230" 
@@ -75,19 +67,16 @@
                         >
                     </circle>
                 </svg>
-    
                 <div class="checkbox">
                     <input class="checkbox__input"type="checkbox" name="Sound" id="timer-checkbox" checked>
                     <label class="checkbox__label" for="timer-checkbox">Play sound when time ends</label>
                 </div>
-
             </div>
-
         </div>
 
         <div class="buttons">
-            <button id="reset" class="btn">Reset</button>
-            <button id="start" class="btn">Start</button>
+            <button id="reset" class="btn"></button>
+            <button id="start" class="btn"></button>
             <button id="switch" class="btn">Switch</button>
         </div>
 
@@ -108,10 +97,10 @@
     <script src="js/apps/timer.js"></script>
     <script src="js/apps/rounds.js"></script>
     
-    <!-- DOM manipulation prototype-->
+    <!-- DOM manipulation prototype -->
     <script src="js/DOMManipulation/style.js"></script>
     
-    <!-- App specific DOM manipulations -->
+    <!-- Apps DOM manipulations -->
     <script src="js/DOMManipulation/styleTimer.js"></script>
     <script src="js/DOMManipulation/styleStopWatch.js"></script>
     <script src="js/DOMManipulation/styleRound.js"></script>

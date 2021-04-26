@@ -32,7 +32,6 @@ class Style {
         ];
         
         this.runOnStop = [
-            this.disableInputs,
             this.updateBtnTxt
         ];
         

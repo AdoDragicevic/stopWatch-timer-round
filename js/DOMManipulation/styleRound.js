@@ -11,8 +11,8 @@ class StyleRound extends Style {
         );
         
         this.runOnStart.push( 
-            this.displayLastInput, 
-            this.updateH1withCurrRound 
+            this.updateH1, 
+            this.displayLastInput
         );
 
         this.runOnReset.push(
@@ -27,8 +27,8 @@ class StyleRound extends Style {
     }
 
 
-    updateH1withCurrRound() {
-        document.querySelector(".header").innerText = `${this.name} ${this.currRound}`;
+    updateH1() {
+        document.querySelector(".header").innerText = this.isRunning ? `${this.name} ${this.currRound}` : this.name;
     }
 
     

@@ -12,9 +12,9 @@ const style = {
 };
 
 const apps = [
+    new StopWatch(true),
     new Timer(), 
-    new Round(), 
-    new StopWatch(true)
+    new Round()
 ];
 
 new SwitchBetweenApps(apps);

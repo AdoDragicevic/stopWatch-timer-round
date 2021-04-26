@@ -63,6 +63,7 @@ class Time {
 
 
     start() {
+        if(this.checkLimit(this.runTimeData.maxLimit)) return;
         this.isRunning = true;
         if(this.runOnStart) this.runOnStart();
         if(this.style.runOnStart) for(let func of this.style.runOnStart) func.call(this);

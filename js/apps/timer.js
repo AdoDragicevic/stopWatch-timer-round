@@ -1,15 +1,12 @@
 class Timer extends Time {
 
-    //default values
-    val = [24, 0, 0];
-
     runTimeData = {
         duration: 1000,
         maxLimit: [0, 0, 0],
         timeAmount: -1,
         limits: [0, -1, -1],
         defaultTime: 59,
-        callback: this.stop 
+        callback: () => this.stop 
     }
 
 }

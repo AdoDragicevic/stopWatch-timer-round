@@ -1,8 +1,8 @@
 class Round extends Time {
 
     //default values
-    val = [5, 0, 12];
-    resetVal = [5, 0, 12];
+    val = [3, 0, 12];
+    resetVal = [3, 0, 12];
     breakVal = [0, 30];
     resetBreakVal = [0, 30];
     //e.g.if user sets 12 rounds, when app is started, this is the current round
@@ -57,6 +57,7 @@ class Round extends Time {
         if(this.isCountingRoundTime) {
             this.resetVal.forEach( (val, i) => this.val[i] = val );
             this.val[this.val.length - 1] = ++this.currRound;
+            this.style.updateH1.call(this);
         }
         else this.breakVal.forEach( (breakTime, i) => this.val[i] = breakTime );
     };
