@@ -9,6 +9,7 @@ class Style {
             this.updateH1,
             this.updateInputs,
             this.disableInputs,
+            this.updateLabel,
             this.updateBtnTxt,
             this.changeBgImg,  
             this.displayLastInput,
@@ -17,7 +18,8 @@ class Style {
 
         this.runOnStart = [
             this.disableInputs,
-            this.updateBtnTxt
+            this.updateBtnTxt,
+            this.updateLabel
         ];
         
         this.runOnReset = [
@@ -25,7 +27,8 @@ class Style {
             this.updateH1,
             this.updateInputs,
             this.disableInputs,
-            this.updateBtnTxt
+            this.updateBtnTxt,
+            this.updateLabel
         ];
         
         this.runOnStop = [
@@ -67,6 +70,23 @@ class Style {
         }
     }
 
+
+    updateInputLabelTxt(txt) {
+        let labels = document.querySelectorAll(".inputs__label"); 
+        if(!txt) for(let label of labels) label.innerText = "";
+        else labels.forEach( (label, i) => label.innerText = txt[i] );
+    }
+
+
+    updateLabel() {
+        let opacity = this.isRunning ? "0" : "1";
+        document.querySelectorAll(".inputs__label").forEach( label => label.style.opacity = opacity);
+    }
+
+
+    showLabel() {
+        document.querySelectorAll(".inputs__label").forEach( label => label.style.opacity = "0" );
+    }
 
     updateBtnTxt() {        
         for(let btn of this.btns) btn.innerText = this.btnTxt[btn.id]();

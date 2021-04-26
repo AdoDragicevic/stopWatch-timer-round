@@ -1,4 +1,4 @@
-// Switch between apps; add listeners to btnSwitch and left/right keyboard arrows; update dissplay (if apps use different inputs/btns pass all inputs/btns as args to constructor)
+// Switch between apps; if apps use different inputs/btns display relevant ones; hide unneded elements in HTML .app-specific-content
 
 class SwitchBetweenApps {
 
@@ -18,7 +18,7 @@ class SwitchBetweenApps {
             }
         });
 
-        //check if apps use identical inputs/btns, return false or arr of unique values (inputs/btns)
+        //check if apps use identical inputs/btns, return false or arr of unique values (e.g. inputs/btns)
         this.inputs = this.compare(apps, "inputs");
         this.btns = this.compare(apps, "btns");
 
@@ -40,7 +40,7 @@ class SwitchBetweenApps {
         if(this.inputs) this.hideExcessEl(app.inputs, this.inputs);
         if(this.btns) this.hideExcessEl(app.btns, this.btns);
         this.hideAppSpecificContent(app);
-        app.updateDisplay();
+        for(let func of app.style.runOnUpdateDisplay) func.call(app);
     }
     
 

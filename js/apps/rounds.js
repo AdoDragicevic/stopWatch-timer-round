@@ -86,12 +86,4 @@ class Round extends Time {
     };
 
 
-    //don't turn last val into a 2 digit num if its not already a 2 digit num (e.g. 1 to 01)
-    updateInputs() {
-        this.inputs.forEach( (input, i) => {
-            input.value = (i === this.inputs.length - 1) ? this.val[i] : this.twoDigitNum( this.val[i] );
-        });
-    }
-
-
 };

@@ -2,7 +2,7 @@
 
 class Time {
     
-    constructor(disabledInputs = false, time = inputs, btns = buttons, DOMManipulations = style) {
+    constructor(disabledInputs = false, time = inputs, btns = buttons, DOMManipuation = style) {
 
         //can the user set the input value
         this.isDisableInputs = disabledInputs;
@@ -21,6 +21,7 @@ class Time {
 
         //values to display when app is reset (values the user set or default time)
         this.resetVal = [];
+
         ( () => {
             for(let i of this.inputs) {
                 this.val.push(0);
@@ -35,7 +36,7 @@ class Time {
         this.isDisplayed = false;
 
         //app specific DOM manipulation
-        this.style = DOMManipulations[this.name.toLowerCase()];
+        this.style = DOMManipuation[this.name.toLowerCase()];
 
         //btn click invokes method with same name as btn txt
         for(let btn of this.btns) btn.addEventListener( "click", () => {
@@ -46,7 +47,7 @@ class Time {
             }
         });
 
-        //update value when input value is cahnged
+        //update this.val when input value is cahnged
         this.allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", null];
         for(let input of this.inputs) input.addEventListener("input", e => {
             if(this.isDisplayed) {
@@ -85,22 +86,7 @@ class Time {
     }
 
 
-    //Run time
-    
-
-    //generate str with current lap details
-    currVal(num = 0) {
-        //base case (recursion)
-        if( num === (this.val.length - 1) ) return this.twoDigitNum(this.val[num]);
-        return this.twoDigitNum(this.val[num]) + ": " + this.currVal(++num);
-    };
-
-
-    //in HTML, display nums as two digit (e.g. 1 as "01")
-    twoDigitNum(num) {
-        let n = num.toString();
-        return n.length === 1 ? `0${n}`: n;
-    }    
+    //Run time   
 
 
     //runTimeData contains: how often, until when, increment amount, value to increment, periodic limits, default time, callback for periodic limits
@@ -153,6 +139,27 @@ class Time {
         }
     }
 
+
+    //helper functions
+
+    
+    //generate str with current lap details
+    currVal(num = 0) {
+        //base case (recursion)
+        if( num === (this.val.length - 1) ) return this.twoDigitNum(this.val[num]);
+        return this.twoDigitNum(this.val[num]) + " : " + this.currVal(++num);
+    };
+
+
+    //in HTML, display nums as two digit (e.g. 1 as "01")
+    twoDigitNum(num) {
+        let n = num.toString();
+        return n.length === 1 ? `0${n}`: n;
+    }     
+
+
+    //set time
+
     
     //when user sets input maually, save those values in current app
     setTimeManually() {
@@ -163,13 +170,6 @@ class Time {
             //update this.resetVal array (when app is reset it will return to the last values user inputed)
             this.resetVal[i] = val;
         });
-    }
-
-
-    //DOM manimpuation
-
-    updateDisplay() {
-        if(this.style) for(let func of this.style.runOnUpdateDisplay) func.call(this);
     }
 
 
