@@ -16,18 +16,6 @@ class Round extends Time {
     //setting round duration or break duration
     isSettingRoundTime = true;
 
-
-    btnTxt = {
-        //btn id : txt
-        reset: () => {
-            if(this.isRunning || this.isDisableInputs) return "Reset";
-            return this.isSettingRoundTime ? "Set break" : "Set round";
-        },
-        start: () => {
-            return this.isRunning ? "Stop" : "Start";
-        }
-    };
-
     
     runTimeData = {
         duration: 1000,
@@ -51,11 +39,6 @@ class Round extends Time {
         this.isSettingRoundTime = true;
         this.isCountingRoundTime = true;
         this.currRound = 1;
-        
-        
-        //:::::viual:::::
-        this.inputs[this.inputs.length - 1].style.display = "";
-        document.querySelector(".header").innerText = this.name;
     }
 
 

@@ -46,14 +46,17 @@ class Style {
         document.title = this.isRunning ? `${this.currVal()} | ${this.name}` : this.name;
     }
 
+
     updateH1() {
         document.querySelector("h1").innerText = this.name;
     }
+
 
     //ecah app runs its own time, when app is displayed display its time in HTML
     updateInputs() {
         this.inputs.forEach( (input, i) => input.value = this.twoDigitNum(this.val[i]) );
     }
+
 
     //if current app is not running and it allows users to change input, add/remove disable to inputs
     disableInputs() {
@@ -64,10 +67,12 @@ class Style {
         }
     }
 
+
     updateBtnTxt() {        
         for(let btn of this.btns) btn.innerText = this.btnTxt[btn.id]();
     }
 
+    
     changeBgImg() {
         document.body.setAttribute("class", `bg-img--${ this.name.toLowerCase() }`);
     }

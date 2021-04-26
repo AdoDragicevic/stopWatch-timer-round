@@ -1,12 +1,4 @@
 class StopWatch extends Time {
-    
-
-    btnTxt = {
-        //btn id : text
-        reset: () => this.isRunning ? "Lap" : "Reset",
-        start: () => this.isRunning ? "Stop" : "Start"
-    }
-
 
     //count m/s/ms or h/m/s (after 59m, 59s 99,ms start counting from 0h, 0m, 0s)
     isCountingHours = false;

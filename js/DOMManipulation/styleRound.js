@@ -14,11 +14,20 @@ class StyleRound extends Style {
         this.runOnReset.push(
             this.displayLastInput
         );
-
         
     }
+
     
-    //round counter doesn't display it when running
+    updateBtnTxt() {
+        document.querySelector("#reset").innerText = ( () => {
+            if(this.isRunning || this.isDisableInputs) return "Reset";
+            return this.isSettingRoundTime ? "Set break" : "Set round";
+        })();
+        document.querySelector("#start").innerText = this.isRunning ? "Stop" : "Start";
+    }
+    
+    
+    //don't display ":" between seconds (second input) and rounds (last input)
     displayLastInputBreak() {
         document.querySelector(".inputs__break--2").style.visibility = "hidden";
     }

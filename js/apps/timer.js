@@ -3,12 +3,6 @@ class Timer extends Time {
     //default values
     val = [24, 0, 0];
 
-    btnTxt = {
-        //btn id : text
-        reset: () => "Reset",
-        start: () => this.isRunning ? "Stop" : "Start"
-    }
-
     runTimeData = {
         duration: 1000,
         maxLimit: [0, 0, 0],
