@@ -4,52 +4,26 @@ class Time {
     
     constructor(disabledInputs = false, time = inputs, btns = buttons, DOMManipuation = style) {
 
-        //can the user set the input value
-        this.isDisableInputs = disabledInputs;
-
-        //inputs
         this.inputs = [...time];
 
-        //buttons
         this.btns = [...btns];
-
-        //app has the name of its constructor
+        
         this.name = this.constructor.name;
-
-        //input values (shows currently running time)
-        this.val = [];
-
-        //values to display when app is reset (values the user set or default time)
-        this.resetVal = [];
-
-        ( () => {
-            for(let i of this.inputs) {
-                this.val.push(0);
-                this.resetVal.push(0);
-            }
-        } )();
-
-        //time is running
+        
         this.isRunning = false;
-
-        //currently displayed app
+        
         this.isDisplayed = false;
-
-        //app specific DOM manipulation
+        
+        this.isDisableInputs = disabledInputs;
+        
         this.style = DOMManipuation[this.name.toLowerCase()];
-
-        //btn click invokes method with same name as btn txt
+        
         for(let btn of this.btns) btn.addEventListener( "click", () => {
-            if(this.isDisplayed) {
-                let space = btn.innerText.indexOf(" ");
-                let firstWord = space !== -1 ? btn.innerText.slice(0, space) : btn.innerText;
-                this[firstWord.toLowerCase()](); 
-            }
+            if(this.isDisplayed) this[ this.getLowerCaseFirstWord(btn.innerText) ]();
         });
 
-        //update this.val when input value is cahnged
         this.allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", null];
-        for(let input of this.inputs) input.addEventListener("input", e => {
+        for(let input of this.inputs) input.addEventListener( "input", e => {
             if(this.isDisplayed) {
                 if( !this.allowedKeys.includes(e.data) ) input.value = null;
                 this.setTimeManually();
@@ -59,118 +33,94 @@ class Time {
     }
 
 
-    //Basic functionalities
-
-
     start() {
-        if(this.checkLimit(this.runTimeData.maxLimit)) return;
+        let {time, maxLimit} = this.runTimeData;
+        if(this.areSame(time, maxLimit)) return;
         this.isRunning = true;
         if(this.runOnStart) this.runOnStart();
-        if(this.style.runOnStart) for(let func of this.style.runOnStart) func.call(this);
+        if(this.style) if(this.style.runOnStart) this.style.runOnStart.forEach(f => f.call(this, this.runTimeData));
         this.runTime(this.runTimeData);
     }
 
 
     stop() {
         this.isRunning = false;
-        clearInterval(this.interval);
+        clearInterval(this.runTimeData.runTimeInterval);
         if(this.runOnStop) this.runOnStop();
-        if(this.style.runOnStop) for(let func of this.style.runOnStop) func.call(this);
+        this.style.runOnStop.forEach(f => f.call(this));
     }
 
 
-    reset(...values) {
+    reset() {
         this.stop();
+        this.runTimeData.time = [...this.runTimeData.resetTime];
         if(this.runOnReset) this.runOnReset();
-        this.val.forEach( (v, i) => this.val[i] = values[i] || this.resetVal[i] );
-        if(this.style.runOnReset) for(let func of this.style.runOnReset) func.call(this);
+        this.style.runOnReset.forEach(f => f.call(this));
     }
 
 
-    //Run time   
-
-
-    //runTimeData contains: how often, until when, increment amount, value to increment, periodic limits, default time, callback for periodic limits
     runTime(runTimeData) {
-        //destructure runTimeData
-        let data = typeof runTimeData === "function" ? runTimeData.call(this) : runTimeData;
-        let {duration, maxLimit, timeAmount, val, limits, defaultTime, callback} = data;
-        this.interval = setInterval( () => {
-            //stop if maxLimits is reached
-            if( this.checkLimit(maxLimit) ) return this.stop();
-            //timeAmount and val to increment
-            this.addTime(timeAmount, val);
-            //turn 100ms into 1s, 60s into 1m; etc.
-            this.calcTime(timeAmount, limits, defaultTime, callback);
-            if(this.isDisplayed && this.style.runOnRunTime) {
-                for(let func of this.style.runOnRunTime) func.call(this); 
-            }
-        }, duration);
+        let {maxLimit, runOnMaxLimit, limits, incrementAmount, defaultVals} = runTimeData;
+        runTimeData.runTimeInterval = setInterval( () => {
+            let {time} = runTimeData;
+            if(this.areSame(time, maxLimit)) return runOnMaxLimit();
+            runTimeData.time = this.getNewTime(time, incrementAmount, limits, defaultVals);
+            if(this.isDisplayed) this.style.runOnRunTime.forEach(f => f.call(this));
+        }, 10);
     }
 
 
-    //add timeAmount (e.g. 1) to last val if not specified othervise
-    addTime(timeAmount, indx = this.val.length) {
-        this.val[indx - 1] += timeAmount;
-    }
-
-
-    //check if max limit is reached
-    checkLimit(maxLimit) {
-        if(!maxLimit) return false;
-        for(let i = 0; i < maxLimit.length; i++) {
-            if(maxLimit[i] !== this.val[i]) return false;
-        }
-        return true;
-    }
-    
-
-    //turn 100ms into 1s, 60s into 1m, 60m into 1h
-    calcTime(timeAmount, limits, defaultTime, callback) {
-        for(let i = limits.length - 1; i >= 0; i--) {
-            if( limits[i] === this.val[i] ) {
-                if(i !== 0) {
-                    //e.g. turn 00:00:60 into 00:01:00
-                    this.val[i] = defaultTime;
-                    this.val[i-1] += timeAmount;
-                }
-                else callback.call(this);
-            }
+    getNewTime(time, incrementAmount, limits, defaultVals) {
+        for(let i = time.length - 1; i >= 0; i--) {
+            time[i] += incrementAmount;
+            //e.g. turn 0:59 into 1:00
+            if(time[i] === limits[i] && i !== 0) time[i] = defaultVals[i];
             else break;
         }
+        return time;
     }
 
 
-    //helper functions
-
-    
-    //generate str with current lap details
-    currVal(num = 0) {
-        //base case (recursion)
-        if( num === (this.val.length - 1) ) return this.twoDigitNum(this.val[num]);
-        return this.twoDigitNum(this.val[num]) + " : " + this.currVal(++num);
-    };
-
-
-    //in HTML, display nums as two digit (e.g. 1 as "01")
-    twoDigitNum(num) {
-        let n = num.toString();
-        return n.length === 1 ? `0${n}`: n;
-    }     
-
-
-    //set time
-
-    
-    //when user sets input maually, save those values in current app
     setTimeManually() {
         this.inputs.forEach( (input, i) => {
-            let val = parseInt(input.value) || 0;
-            //update this.val array (stores currently running time)
-            this.val[i] = val;
-            //update this.resetVal array (when app is reset it will return to the last values user inputed)
-            this.resetVal[i] = val;
+            this.runTimeData.time[i] = this.runTimeData.resetTime[i] = parseInt(input.value) || 0;
         });
+    }
+
+
+    playSound(soundName) {
+        let checkBox = document.querySelector(`#${this.name.toLowerCase()}-checkbox`);
+        let audio = document.querySelector(`#audio-${soundName}`);
+        if(checkBox.checked) audio.play(); 
+    }
+
+
+    areSame(arr1, arr2) {
+        if(!arr1 || !arr2) return false;
+        for(let i = 0; i < arr1.length; i++) if(arr1[i] !== arr2[i]) return false;
+        return true;
+    }
+
+
+    getLowerCaseFirstWord(str) {
+        let space = str.indexOf(" ");
+        let firstWord = space === -1 ? str : str.slice(0, space);
+        return firstWord.toLowerCase(); 
+    }
+
+
+    getCurrTimeStr(numOfVal = 3) {
+        let {time} = this.runTimeData;
+        let str = "";
+        for(let i = 0; i < numOfVal - 1; i++) str += `${this.getTwoDigitStr( time[i] )} : `;
+        str += this.getTwoDigitStr(time[numOfVal - 1]);
+        return str;
+    }
+
+
+    getTwoDigitStr(num) {
+        let n = num.toString();
+        return n.length === 1 ? `0${n}`: n;
     }
 
 

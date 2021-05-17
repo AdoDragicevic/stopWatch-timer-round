@@ -45,7 +45,7 @@ class Style {
 
     //show current time in browser tab
     updateTitle() {
-        document.title = this.isRunning ? `${this.currVal()} | ${this.name}` : this.name;
+        document.title = this.isRunning ? `${this.getCurrTimeStr(3)} | ${this.name}` : this.name;
     }
 
 
@@ -55,8 +55,8 @@ class Style {
 
 
     //ecah app runs its own time, when app is displayed display its time in HTML
-    updateInputs() {
-        this.inputs.forEach( (input, i) => input.value = this.twoDigitNum(this.val[i]) );
+    updateInputs(...values) {
+        this.inputs.forEach( (input, i) => input.value = values[i] || this.getTwoDigitStr(this.runTimeData.time[i]) );
     }
 
 
@@ -79,13 +79,16 @@ class Style {
 
     updateLabel() {
         let opacity = this.isRunning ? "0" : "1";
-        document.querySelectorAll(".inputs__label").forEach( label => label.style.opacity = opacity);
+        document.querySelectorAll(".inputs__label").
+        forEach( label => label.style.opacity = opacity);
     }
 
 
     showLabel() {
-        document.querySelectorAll(".inputs__label").forEach( label => label.style.opacity = "0" );
+        document.querySelectorAll(".inputs__label").
+        forEach( label => label.style.opacity = "0" );
     }
+
 
     updateBtnTxt() {        
         for(let btn of this.btns) btn.innerText = this.btnTxt[btn.id]();
@@ -97,14 +100,13 @@ class Style {
     }
 
 
-    displayLastInputBreak() {
-        document.querySelector(".inputs__break--2").style.visibility = "";
-    }
-
-
     displayLastInput() {
         document.querySelector(".inputs__box:last-child").style.display = "";
     }
 
+
+    displayLastInputBreak() {
+        document.querySelector(".inputs__break--2").style.display = "";
+    }
 
 }

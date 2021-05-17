@@ -9,7 +9,7 @@ class StyleTimer extends Style {
         this.runOnUpdateDisplay.push(
             this.updateInputLabelTxt.bind(this, ["hours", "minutes", "seconds"])
         );
-
+        
         this.runOnStart.push(
             this.runLine
         );
@@ -21,7 +21,7 @@ class StyleTimer extends Style {
         this.runOnReset.push(
             this.resetLine
         );
-
+        
     }
 
 
@@ -34,13 +34,13 @@ class StyleTimer extends Style {
     runLine() {
         let line = document.querySelector(".line");
         if(!this.lineInterval) {
-            let [h, m, s] = this.resetVal;
-            let duration = (h * 60 * 60) + (m * 60) + s;
-            if(duration === 0) return;
+            let [h, m, s] = this.runTimeData.time;
+            let duration = ((h * 60 * 60) + (m * 60) + (s)) * 100;
+            if(duration === 99) return;
             line.max = line.value = duration;
         }
         this.lineInterval = setInterval( () => {
-            line.value <= 0 ? clearInterval(this.lineInterval) : line.value -= 0.01;
+            line.value <= 0 ? clearInterval(this.lineInterval) : line.value -= 1;
         }, 10);
     }
 
@@ -55,9 +55,9 @@ class StyleTimer extends Style {
         this.lineInterval = null;
         let line = document.querySelector(".line");
         let interval = setInterval( () => {
-            line.value >= line.max ? clearInterval(interval) : line.value += 0.1;
-        }, 1);
+            line.value >= line.max ? clearInterval(interval) : line.value += 10;
+        }, 10);
     }
 
 
-};
+}

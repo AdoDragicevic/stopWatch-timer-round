@@ -40,7 +40,7 @@ class SwitchBetweenApps {
         if(this.inputs) this.hideExcessEl(app.inputs, this.inputs);
         if(this.btns) this.hideExcessEl(app.btns, this.btns);
         this.hideAppSpecificContent(app);
-        for(let func of app.style.runOnUpdateDisplay) func.call(app);
+        app.style.runOnUpdateDisplay.forEach(f => f.call(app));
     }
     
 

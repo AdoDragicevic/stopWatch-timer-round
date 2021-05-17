@@ -3,7 +3,7 @@ const inputs    = document.querySelectorAll(".input"),
       buttons   = document.querySelectorAll("#reset, #start"),
       switchBtn = document.querySelector("#switch");
 
-
+      
 //SETUP
 const style = {
     timer: new StyleTimer(),
@@ -12,9 +12,9 @@ const style = {
 };
 
 const apps = [
-    new StopWatch(true),
-    new Timer(), 
-    new Round()
+    new Round(),
+    new Timer(),
+    new StopWatch(false)
 ];
 
 new SwitchBetweenApps(apps);
