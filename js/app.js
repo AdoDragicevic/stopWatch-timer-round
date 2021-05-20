@@ -11,10 +11,6 @@ const style = {
     round: new StyleRound()
 };
 
-const apps = [
-    new Round(),
-    new Timer(),
-    new StopWatch(false)
-];
+const apps = [ new StopWatch(), new Timer(), new Round() ];
 
 new SwitchBetweenApps(apps);

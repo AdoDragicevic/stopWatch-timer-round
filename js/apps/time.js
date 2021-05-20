@@ -2,21 +2,24 @@
 
 class Time {
     
-    constructor(disabledInputs = false, time = inputs, btns = buttons, DOMManipuation = style) {
+    constructor(time = inputs, btns = buttons, DOMManipuation = style) {
+
+        this.name = this.constructor.name;
+
 
         this.inputs = [...time];
 
         this.btns = [...btns];
         
-        this.name = this.constructor.name;
+        this.style = DOMManipuation[this.name.toLowerCase()];
+
+
+        this.isDisableInputs = false;
         
         this.isRunning = false;
         
         this.isDisplayed = false;
         
-        this.isDisableInputs = disabledInputs;
-        
-        this.style = DOMManipuation[this.name.toLowerCase()];
         
         for(let btn of this.btns) btn.addEventListener( "click", () => {
             if(this.isDisplayed) this[ this.getLowerCaseFirstWord(btn.innerText) ]();
@@ -38,7 +41,7 @@ class Time {
         if(this.areSame(time, maxLimit)) return;
         this.isRunning = true;
         if(this.runOnStart) this.runOnStart();
-        if(this.style) if(this.style.runOnStart) this.style.runOnStart.forEach(f => f.call(this, this.runTimeData));
+        if(this.isDisplayed) this.style.runOnStart.forEach(f => f.call(this, this.runTimeData));
         this.runTime(this.runTimeData);
     }
 
@@ -47,7 +50,7 @@ class Time {
         this.isRunning = false;
         clearInterval(this.runTimeData.runTimeInterval);
         if(this.runOnStop) this.runOnStop();
-        this.style.runOnStop.forEach(f => f.call(this));
+        if(this.isDisplayed) this.style.runOnStop.forEach(f => f.call(this));
     }
 
 
@@ -55,7 +58,7 @@ class Time {
         this.stop();
         this.runTimeData.time = [...this.runTimeData.resetTime];
         if(this.runOnReset) this.runOnReset();
-        this.style.runOnReset.forEach(f => f.call(this));
+        if(this.isDisplayed) this.style.runOnReset.forEach(f => f.call(this));
     }
 
 

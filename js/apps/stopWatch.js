@@ -1,5 +1,7 @@
 class StopWatch extends Time {
 
+    isDisableInputs = true;
+
     //run time data
     runTimeData = {
         isCountingHours: false,
