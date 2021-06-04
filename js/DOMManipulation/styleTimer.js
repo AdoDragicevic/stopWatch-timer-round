@@ -33,8 +33,9 @@ class StyleTimer extends Style {
 
     runLine() {
         let line = document.querySelector(".line");
+        if(line.value === 0) line.value = line.max;
         if(!this.lineInterval) {
-            let [h, m, s] = this.runTimeData.time;
+            let [h, m, s] = this.config.time;
             let duration = ((h * 60 * 60) + (m * 60) + (s)) * 100;
             if(duration === 99) return;
             line.max = line.value = duration;

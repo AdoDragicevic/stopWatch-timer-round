@@ -2,8 +2,8 @@ class StopWatch extends Time {
 
     isDisableInputs = true;
 
-    //run time data
-    runTimeData = {
+    //config time data
+    config = {
         isCountingHours: false,
         time: [0, 0, 0],
         resetTime: [0, 0, 0],
@@ -12,7 +12,7 @@ class StopWatch extends Time {
         defaultVals: [0, 0, 0],
         maxLimit: [60, 0, 0],
         runOnMaxLimit: () => {
-            if(this.runTimeData.isCountingHours) this.reset();
+            if(this.config.isCountingHours) this.reset();
             else {
                 this.style.removeLaps();
                 this.stop();
@@ -24,7 +24,7 @@ class StopWatch extends Time {
 
 
     runOnReset = () => {
-        if(this.runTimeData.isCountingHours) this.countHours(false);
+        if(this.config.isCountingHours) this.countHours(false);
     }
 
 
@@ -34,12 +34,12 @@ class StopWatch extends Time {
 
 
     countHours(bool) {
-        let {runTimeData} = this;
-        runTimeData.isCountingHours = bool;
-        runTimeData.time = bool ? [1, 0, 0, 0] : [0, 0, 0]; 
-        runTimeData.maxLimit = bool ? [99, 99, 99, 99] : [60, 0, 0];
-        runTimeData.limits = bool ? [60, 60, 60, 100] : [60, 60, 100];
-        runTimeData.defaultVals = bool ? [0, 0, 0, 0] : [0, 0, 0];
+        let {config} = this;
+        config.isCountingHours = bool;
+        config.time = bool ? [1, 0, 0, 0] : [0, 0, 0]; 
+        config.maxLimit = bool ? [99, 99, 99, 99] : [60, 0, 0];
+        config.limits = bool ? [60, 60, 60, 100] : [60, 60, 100];
+        config.defaultVals = bool ? [0, 0, 0, 0] : [0, 0, 0];
     }
 
 

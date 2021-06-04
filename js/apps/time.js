@@ -20,7 +20,6 @@ class Time {
         
         this.isDisplayed = false;
         
-        
         for(let btn of this.btns) btn.addEventListener( "click", () => {
             if(this.isDisplayed) this[ this.getLowerCaseFirstWord(btn.innerText) ]();
         });
@@ -37,18 +36,18 @@ class Time {
 
 
     start() {
-        let {time, maxLimit} = this.runTimeData;
+        let {time, maxLimit} = this.config;
         if(this.areSame(time, maxLimit)) return;
         this.isRunning = true;
         if(this.runOnStart) this.runOnStart();
-        if(this.isDisplayed) this.style.runOnStart.forEach(f => f.call(this, this.runTimeData));
-        this.runTime(this.runTimeData);
+        if(this.isDisplayed) this.style.runOnStart.forEach(f => f.call(this, this.config));
+        this.runTime(this.config);
     }
 
 
     stop() {
         this.isRunning = false;
-        clearInterval(this.runTimeData.runTimeInterval);
+        clearInterval(this.config.runTimeInterval);
         if(this.runOnStop) this.runOnStop();
         if(this.isDisplayed) this.style.runOnStop.forEach(f => f.call(this));
     }
@@ -56,18 +55,18 @@ class Time {
 
     reset() {
         this.stop();
-        this.runTimeData.time = [...this.runTimeData.resetTime];
+        this.config.time = [...this.config.resetTime];
         if(this.runOnReset) this.runOnReset();
         if(this.isDisplayed) this.style.runOnReset.forEach(f => f.call(this));
     }
 
 
-    runTime(runTimeData) {
-        let {maxLimit, runOnMaxLimit, limits, incrementAmount, defaultVals} = runTimeData;
-        runTimeData.runTimeInterval = setInterval( () => {
-            let {time} = runTimeData;
+    runTime(config) {
+        let {maxLimit, runOnMaxLimit, limits, incrementAmount, defaultVals} = config;
+        config.runTimeInterval = setInterval( () => {
+            let {time} = config;
             if(this.areSame(time, maxLimit)) return runOnMaxLimit();
-            runTimeData.time = this.getNewTime(time, incrementAmount, limits, defaultVals);
+            config.time = this.getNewTime(time, incrementAmount, limits, defaultVals);
             if(this.isDisplayed) this.style.runOnRunTime.forEach(f => f.call(this));
         }, 10);
     }
@@ -86,7 +85,7 @@ class Time {
 
     setTimeManually() {
         this.inputs.forEach( (input, i) => {
-            this.runTimeData.time[i] = this.runTimeData.resetTime[i] = parseInt(input.value) || 0;
+            this.config.time[i] = this.config.resetTime[i] = parseInt(input.value) || 0;
         });
     }
 
@@ -113,7 +112,7 @@ class Time {
 
 
     getCurrTimeStr(numOfVal = 3) {
-        let {time} = this.runTimeData;
+        let {time} = this.config;
         let str = "";
         for(let i = 0; i < numOfVal - 1; i++) str += `${this.getTwoDigitStr( time[i] )} : `;
         str += this.getTwoDigitStr(time[numOfVal - 1]);

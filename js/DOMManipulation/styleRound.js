@@ -47,7 +47,7 @@ class StyleRound extends Style {
 
 
     updateTitle() {
-        let {time, currRound} = this.runTimeData;
+        let {time, currRound} = this.config;
         let minutes = this.getTwoDigitStr(time[0]);
         let seconds = this.getTwoDigitStr(time[1]);
         document.title = this.isRunning ? `${minutes} : ${seconds} | Round ${currRound}` : this.name;
@@ -55,14 +55,14 @@ class StyleRound extends Style {
 
 
     updateH1() {
-        document.querySelector(".header").innerText = this.isRunning ? `${this.name} ${this.runTimeData.currRound}` : this.name;
+        document.querySelector(".header").innerText = this.isRunning ? `${this.name} ${this.config.currRound}` : this.name;
     }
 
     
     updateBtnTxt() {
         document.querySelector("#reset").innerText = ( () => {
             if(this.isRunning || this.isDisableInputs) return "Reset";
-            return this.runTimeData.isSettingBreakTime ? "Set round" : "Set break";
+            return this.config.isSettingBreakTime ? "Set round" : "Set break";
         })();
         document.querySelector("#start").innerText = this.isRunning ? "Stop" : "Start";
     }
@@ -81,7 +81,7 @@ class StyleRound extends Style {
 
     
     displayNumOfRounds() {
-        this.inputs[this.inputs.length - 1].value = this.runTimeData.numOfRounds;
+        this.inputs[this.inputs.length - 1].value = this.config.numOfRounds;
     }
 
 
@@ -91,14 +91,14 @@ class StyleRound extends Style {
   
 
     updateCircleColor() {
-        document.querySelector(".svg__circle").style.stroke = this.runTimeData.isCountingBreakTime ? "green" : "red";
+        document.querySelector(".svg__circle").style.stroke = this.config.isCountingBreakTime ? "green" : "red";
     }
 
 
-    updateCircleData = (runTimeData) => {
+    updateCircleData = (config) => {
         if(!this.circleData) {
             this.circleData = { el: document.querySelector(".svg__circle") }
-            //window.addEventListener("resize", () => this.updateCircleDataOnScreenResize(runTimeData));
+            //window.addEventListener("resize", () => this.updateCircleDataOnScreenResize(config));
         }
         this.circleData.radius = ( () => {
             let r = this.circleData.el.getAttribute("r");
@@ -108,15 +108,15 @@ class StyleRound extends Style {
     }
 
 
-    updateCircleDataOnScreenResize(runTimeData) {
+    updateCircleDataOnScreenResize(config) {
         this.stopCircle();
         this.updateCircleData();
-        this.runCircle(runTimeData);
+        this.runCircle(config);
     }
 
 
-    runCircle = (runTimeData) => {
-        let duration = this.getDuration(runTimeData);
+    runCircle = (config) => {
+        let duration = this.getDuration(config);
         let offsetPerInterval = this.circleData.perimeter / duration;
         this.circleData.circleInterval = setInterval( () => {
             const currOffset = parseFloat(this.circleData.el.getAttribute("stroke-dashoffset"));
@@ -126,8 +126,8 @@ class StyleRound extends Style {
     }
 
 
-    getDuration(runTimeData) {
-        let {isCountingBreakTime, resetBreak: breakTime, resetTime: roundTime} = runTimeData;
+    getDuration(config) {
+        let {isCountingBreakTime, resetBreak: breakTime, resetTime: roundTime} = config;
         let sorce = isCountingBreakTime ? breakTime : roundTime;
         let [m, s] = sorce;
         let duration = (m * 60 + s) * 100;

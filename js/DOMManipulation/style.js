@@ -56,7 +56,7 @@ class Style {
 
     //ecah app runs its own time, when app is displayed display its time in HTML
     updateInputs(...values) {
-        this.inputs.forEach( (input, i) => input.value = values[i] || this.getTwoDigitStr(this.runTimeData.time[i]) );
+        this.inputs.forEach( (input, i) => input.value = values[i] || this.getTwoDigitStr(this.config.time[i]) );
     }
 
 

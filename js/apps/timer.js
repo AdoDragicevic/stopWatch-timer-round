@@ -1,6 +1,6 @@
 class Timer extends Time {
 
-    runTimeData = {
+    config = {
         time: [0, 0, 0, 99],
         resetTime: [0, 0, 0, 99],
         maxLimit: [0, 0, 0, 99],
