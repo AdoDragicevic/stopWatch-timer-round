@@ -1,0 +1,54 @@
+.buttons {
+    position: fixed;
+    bottom: 6vh;
+    width: 100%;
+    margin: 10px auto;
+    z-index: 2;
+}
+
+
+.btn {
+    border-radius: 100px;
+    padding: .8rem 0;
+    width: 15rem;
+    outline: none;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #eee;
+    border: .2px solid rgba(128, 128, 128, 0.5);
+    box-shadow: 0 1rem 4rem rgba(128, 128, 128, .1);
+    font-family: inherit;
+    margin-bottom: 1rem;
+    transition: all .2s;
+}
+
+
+.btn:not(:last-child) {
+    margin-right: .7rem;
+}
+
+
+.btn:hover {
+    box-shadow: 0 1.5rem 4rem rgba(128, 128, 128, .2);
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, .4);
+}
+
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 .5rem 1rem rgba(128, 128, 128, .2); 
+    color: #e2e2e2;
+}
+
+
+@media screen and (max-width: 700px) {
+    .buttons {
+        bottom: 15vh;
+    }
+    .btn {
+        padding: .4rem 0;
+        width: 6rem;
+        font-size: 1.2rem;
+    }
+}

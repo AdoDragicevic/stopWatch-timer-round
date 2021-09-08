@@ -1,0 +1,39 @@
+.svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+
+
+    &--lg {
+        width: 480px;
+        height: 480px;
+        visibility: visible;
+    }
+
+    &--sm {
+        width: 290px;
+        height: 290px;
+        visibility: hidden;
+    }
+
+    &__circle {
+        fill: rgba(0, 0, 0, .6); 
+        stroke: red;
+        stroke-width: 4;
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(-90deg);
+    }
+    
+}
+
+@media (max-width: 575px) {
+    .svg--lg {
+        visibility: hidden;
+    }
+    .svg--sm {
+        visibility: visible;
+    }
+}

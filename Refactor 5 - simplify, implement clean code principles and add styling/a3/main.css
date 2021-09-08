@@ -1,0 +1,165 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+html {
+    /* Default browser font-size is 16px; therefore 1 rem = 16px; now 1 rem = 10px; */
+    font-size: 62.5%;
+}
+
+
+body {
+    box-sizing: border-box;
+    font-family: 'Monda', sans-serif;    
+    text-align: center;
+    color: #eee;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+
+    transition: all .4s;
+}
+
+
+.main-content {
+    position: relative;
+}
+
+
+.header {
+    font-weight: 400;
+    font-size: 5rem;
+    margin-top: 3rem;
+    padding-left: 4rem;
+}
+
+
+.inputs-box {
+    margin: 20vh auto 0 auto;
+    position: relative;
+}
+
+
+.input {
+    display: inline-block;
+    color: inherit;
+    font-family: inherit;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    width: 15%;
+    font-size: 15rem;
+}
+
+.inputs-box__break::before {
+    content: ":";
+    display: inline-block;
+    width: 2.7rem;
+    font-size: 9rem;
+    transform: translateY(-3rem);
+}
+
+
+.inputs-box__break:first-child::before {
+    content: "";
+}
+
+
+.inputs-box__break {
+    display: inline;
+    position: relative;
+}
+
+
+.input__label {
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    margin: 0 auto;   
+}
+
+
+@media(max-width: 1300px) {
+    .input {
+        font-size: 12rem;
+        transform: translateY(-1rem);
+    }
+}
+
+
+@media(max-width: 1000px) {
+    .input {
+        font-size: 10rem;
+        width: 20%;
+    }
+
+    .inputs-box__break:not(:last-child)::after {
+        width: 2rem;
+        font-size: 4rem;
+        transform: translateY(-3.5rem);
+    }
+}
+
+
+@media(max-width: 600px) {
+    .input {
+        width: 25%;
+    }
+}
+
+
+@media(max-width: 450px) {
+    .input {
+        font-size: 6rem;
+        transform: translateY(-2.2rem);
+    }
+}
+
+
+.buttons {
+    position: fixed;
+    bottom: 10vh;
+    width: 100%;
+    margin: 10px auto;
+}
+
+
+.btn {
+    border-radius: 100px;
+    padding: .8rem 0;
+    width: 15rem;
+    outline: none;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #eee;
+    border: .2px solid rgba(128, 128, 128, 0.5);
+    box-shadow: 0 1rem 4rem rgba(128, 128, 128, .1);
+    font-family: inherit;
+    margin-bottom: 1rem;
+    transition: all .2s;
+}
+
+
+.btn:not(:last-child) {
+    margin-right: .7rem;
+}
+
+
+.btn:hover {
+    box-shadow: 0 1.5rem 4rem rgba(128, 128, 128, .2);
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, .4);
+}
+
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 .5rem 1rem rgba(128, 128, 128, .2); 
+    color: #e2e2e2;
+}

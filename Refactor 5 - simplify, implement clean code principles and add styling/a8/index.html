@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="CSS/main.css">
+
+    <title></title>
+    <link rel="icon" type="image/jpg" href="img/favcon.png"/>
+</head>
+<body>
+
+    <header>
+        <em> <h1 class="header"></h1> </em>
+    </header>
+
+    <main>
+
+        <div class="inputs">
+            <span class="inputs__box">
+                <input id="input-1" class="input" type="text" maxlength="2" value="00">
+                <label class="inputs__label" for="input-1"></label>
+            </span>
+            
+            <span class="inputs__break">:</span>
+
+            <span class="inputs__box">
+                <input id="input-2" class="input" type="text" maxlength="2" value="00">
+                <label class="inputs__label" for="input-2"></label>
+            </span>
+            
+            <span class="inputs__break inputs__break--2">:</span>
+
+            <span class="inputs__box">
+                <input id="input-3" class="input" type="text" maxlength="2" value="00">
+                <label class="inputs__label" for="input-3"></label>
+            </span>
+        </div>
+
+        <div class="app-specific-content">
+            <div id="stopWatch">
+                <ul class="laps-list"></ul>
+            </div>
+            
+            <div id="timer">
+                <progress class="line" id="file" value="1" max="1"> </progress>
+                <div class="checkbox">
+                    <input class="checkbox__input"type="checkbox" name="Sound" id="timer-checkbox" checked>
+                    <label class="checkbox__label" for="timer-checkbox">Play sound when time ends</label>
+                </div>
+            </div>
+            
+            <div id="round">
+                <svg  class="circle">
+                    <circle 
+                        r="230" 
+                        fill="transparent" 
+                        stroke="green" 
+                        stroke-width="10" 
+                        transform="rotate(-90 200 200)"
+                        >
+                    </circle>
+                </svg>
+                <div class="checkbox">
+                    <input class="checkbox__input"type="checkbox" name="Sound" id="timer-checkbox" checked>
+                    <label class="checkbox__label" for="timer-checkbox">Play sound when time ends</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="reset" class="btn"></button>
+            <button id="start" class="btn"></button>
+            <button id="switch" class="btn">Switch</button>
+        </div>
+
+    </main>
+
+
+    
+    <!-- JS -->
+
+    <!-- Keep timer running when browser tab not active -->
+    <script src="js/vendors/hackTimer.js"></script>
+    
+    <!-- Apps prototype -->
+    <script src="js/apps/time.js"></script>
+    
+    <!-- Apps -->
+    <script src="js/apps/stopWatch.js"></script>
+    <script src="js/apps/timer.js"></script>
+    <script src="js/apps/rounds.js"></script>
+    
+    <!-- DOM manipulation prototype -->
+    <script src="js/DOMManipulation/style.js"></script>
+    
+    <!-- Apps DOM manipulations -->
+    <script src="js/DOMManipulation/styleTimer.js"></script>
+    <script src="js/DOMManipulation/styleStopWatch.js"></script>
+    <script src="js/DOMManipulation/styleRound.js"></script>
+    
+    <!-- Switch between apps setup -->
+    <script src="js/switchBetweenApps/switchBetweenApps.js"></script>
+    
+    <!-- Run -->
+    <script src="js/app.js"></script>
+
+
+</body>
+</html>

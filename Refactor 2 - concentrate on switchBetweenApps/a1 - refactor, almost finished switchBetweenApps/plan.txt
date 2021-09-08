@@ -1,0 +1,30 @@
+// 3 app
+// prototp obj & 3 obj
+// addEventListener (2 btn - funkcionalnost ovisi o trenutnoj app & 1 btn - switch between apps)
+// callback - vizualni efekti za svaku app
+
+
+
+// files: app, prototype, timer, stopWatch, clock, effects
+
+// parent obj accepts btns, adds events, events depend on curr app
+// app inits parent ojb
+// app has switch btn and app var (1,2,3 = true/false)
+
+
+// Next steps:
+// determine where to add event listeners for btnLeft and BtnRight
+//stopWatch - reset/lap, start/stop
+//timer - reset, start/stop
+//clock - /, start/stop
+
+
+// odvojena funkcija koja daje funkcionalnost promjene aplikacije
+// prima impute: title (of page; h1), applications arr
+// i event listenere
+
+// 4 objekta - time, stopWatch, timer clock
+
+// nakon inicijalizacije ta 4 objekta, onda ide setup
+
+// napravit ću 3 aplikacije odvojeno i bez vizualnih efekata, koje kasnije mogu dodat zadnje

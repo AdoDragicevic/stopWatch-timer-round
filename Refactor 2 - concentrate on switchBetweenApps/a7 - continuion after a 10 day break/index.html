@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        <h1>StopWatch</h1>
+    </header>
+
+    <main>
+        <div class="display">
+            <input type="text" maxlength="2" value="00" disabled>
+            <span>:</span>
+            <input type="text" maxlength="2" value="00" disabled>
+            <span>:</span>
+            <input type="text" maxlength="2" value="00" disabled>
+        </div>
+    
+        <div class="buttons">
+            <!-- app functionality btns-->
+            <button id="btnLeft" class="btn">Reset</button>
+            <button id="btnRight" class="btn">Start</button>
+            <!-- change between apps btn-->
+            <button id="btn-switch">Switch</button>
+        </div>
+
+        <div class="laps">
+            <ul class="laps-list"></ul>
+        </div>
+    </main>
+    
+
+    
+    <!-- JavaScript -->
+
+    <!-- GitHub -->
+    <script src="hackTimer.js"></script>
+    
+    <!-- Mine -->
+    <script src="prototype.js"></script>
+    <script src="stopWatch.js"></script>
+    <script src="timer.js"></script>
+    <script src="clock.js"></script>
+    <script src="switchBetweenApps.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "a4",
+  "version": "1.0.0",
+  "description": "StopWatch/Timer/RoundCounter app",
+  "main": "app.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/main.css -w"
+  },
+  "author": "Ado Dragicevic",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^6.0.0"
+  }
+}

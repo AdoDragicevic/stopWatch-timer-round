@@ -1,0 +1,89 @@
+// 3 app
+// prototp obj & 3 obj
+// addEventListener (2 btn - funkcionalnost ovisi o trenutnoj app & 1 btn - switch between apps)
+// callback - vizualni efekti za svaku app
+
+
+
+// files: app, prototype, timer, stopWatch, clock, effects
+
+// parent obj accepts btns, adds events, events depend on curr app
+// app inits parent ojb
+// app has switch btn and app var (1,2,3 = true/false)
+
+
+// Next steps:
+// determine where to add event listeners for btnLeft and BtnRight
+//stopWatch - reset/lap, start/stop
+//timer - reset, start/stop
+//clock - /, start/stop
+
+
+// odvojena funkcija koja daje funkcionalnost promjene aplikacije
+// prima impute: title (of page; h1), applications arr
+// i event listenere
+// dodat i set display
+
+// 4 objekta - time, stopWatch, timer clock
+
+// nakon inicijalizacije ta 4 objekta, onda ide setup
+
+// napravit ću 3 aplikacije odvojeno i bez vizualnih efekata, koje kasnije mogu dodat zadnje
+
+
+// funkcionalnost d1 - t1
+switchBetweenApps zna current app, može trenutni display staviti toj current app kao t1, t2 i t3.
+svaki app broji svoje vrijeme zasebno i treba ga istovremeno updejtat na screen
+
+app runa vrijeme i pusha to vrijeme na screen - to proizlazi iz te app (njen prototip kao arguments prihvlaća inputs)
+kad se aplikacije switchaju swithchBetweenApps pronalazi current app t1 i displaya ga kao d1.
+
+
+// završio sam switchBetween apps
+// sada trebam napravit prazan time obj, tek toliko da ga mogu prizvat
+// vidit koje methods mora imat svaki app
+// napravit sva 3 appa zasebno
+// tek na kraju dodati zajedničke methods to prototype obj (time)
+// time obj će kao arg primit timeInputs
+// ?? zapravo mogao bi unutar switchBetweenApps dodati i click listener za inpute, i
+// funkaciju koja doda vrijednost iz inputa u current app
+
+
+// završio sam switchBetween apps
+// sada trebam napravit prazan time obj, tek toliko da ga mogu prizvat
+// time obj će kao arg primit timeInputs (oni se updejtaju svaki click)
+// vidit koje methods mora imat svaki app
+// napravit sva 3 appa zasebno
+// tek na kraju dodati zajedničke methods to prototype obj (time)
+// na kraju dodati vizualne efetke (vjerojatno kao callback)
+
+// mogao bi switchBetweenApps napravit još više reusable tako da dopustim dodavanje neodređenog broja btn-a
+
+
+// mislim da je sad switchBetweenApps gotov. Jedino, radi reusability mogu t1 u apps (i switchBetweenApps) preimenovati 
+// u input1 ili val1 (sada je time, ali možda će u drugoj aplikaciji bit text)
+// a jbg, sad mogu onda stavit i neograničen broj inputa LOL!!!!
+
+
+// OK, mislim da je switchBetweenApps sada zbilja reusable :D
+// trebam u njoj još samo promjenti t1 u value1 ili input1
+// Zamjeni keyup s keypress!
+
+
+// Nakon toga, sljedeći koraci:
+// sada trebam napravit prazan time obj, tek toliko da ga mogu prizvat
+// time obj će kao arg primit timeInputs (oni se updejtaju svaki click)
+
+
+// timer is not running when chrome tab is not active! this is a problem!!!
+
+
+// napravit sva 3 appa zasebno
+// StopWatch broji m/s/ms; kada m dođu na 60, m/s/ms postaju h/m/s; kada h === 99 funkcija stop();
+// Timer ima h,m,s; max input u satima je 99
+// Sat ima h,m,s
+// vidit koje methods mora imat svaki app
+// vidit što s setBtnTxt() - kako će current app znat o kojem btnu se radi (možda u setBtnTxt(dodat tu argument btn.id))!
+// tek na kraju dodati zajedničke methods to prototype obj (time)
+// na kraju dodati vizualne efetke (vjerojatno kao callback)
+

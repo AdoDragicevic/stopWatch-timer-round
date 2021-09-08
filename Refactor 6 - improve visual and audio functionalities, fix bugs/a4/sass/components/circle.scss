@@ -1,0 +1,13 @@
+.svg {
+    transform: translateY(2.5rem);
+
+    &__circle {
+        fill: rgba(0, 0, 0, .6); 
+        stroke: red;
+        stroke-width: 4;
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(-90deg);
+    }
+    
+}

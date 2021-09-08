@@ -1,0 +1,61 @@
+.buttons {
+    width: 100%;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+
+.btn {
+    border-radius: 100px;
+    height: 5rem;
+    width: 15rem;
+    outline: none;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #eee;
+    border: .2px solid rgba(128, 128, 128, 0.5);
+    box-shadow: 0 1rem 4rem rgba(128, 128, 128, .1);
+    font-family: inherit;
+    margin-bottom: 1rem;
+    transition: all .2s;
+
+    &:not(:last-child) {
+        margin-right: .7rem;
+    }
+    
+    
+    &:hover {
+        box-shadow: 0 1.5rem 4rem rgba(128, 128, 128, .2);
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, .4);
+    }
+    
+    
+    &:active {
+        transform: translateY(1px);
+        box-shadow: 0 .5rem 1rem rgba(128, 128, 128, .2); 
+    }
+
+}
+
+
+@media screen and (max-width: 720px) {
+    .buttons {
+        bottom: 15vh;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 2vw;
+    }
+    .btn {
+        width: 6.6rem;
+        height: 6.6rem;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}

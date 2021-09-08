@@ -1,0 +1,48 @@
+.laps-list {
+    position: absolute;
+    top: 5rem;
+    right: -6rem;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: inherit;
+    list-style: none;
+    overflow: auto;
+    opacity: .7;
+    max-height: 20rem;
+    width: 20rem;
+
+    & li {
+        padding: 0 2rem;
+    }
+}
+
+
+.laps-list li:first-child {
+    color: red;
+}
+
+
+@media screen and (max-width: 740px) {
+    .laps-list {
+        font-size: 1.5rem;
+        width: max-content;
+        font-weight: 800;
+        color: #eee;
+        top: 1rem;
+        overflow: hidden;
+        height: 2.5rem;
+    }
+}
+
+
+@media screen and (max-width: 740px) and (min-height: 650px) {
+    .laps-list {
+        height: 15vh;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 60%;
+        font-weight: 800;
+        overflow: auto;
+    }
+}

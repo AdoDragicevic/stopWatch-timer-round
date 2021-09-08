@@ -1,0 +1,4 @@
+.inputs__box:last-child::before {
+    visibility: hidden;
+}
+

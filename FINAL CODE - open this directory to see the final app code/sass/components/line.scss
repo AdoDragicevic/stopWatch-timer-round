@@ -1,0 +1,25 @@
+.line {
+    width: 100%;
+    position: absolute;
+    top: 75%;
+    left: 0;
+    height: 5px;
+    transition: all .2s;
+}
+
+
+.line::-webkit-progress-value {
+    background: rgb(179, 0, 0);
+}
+
+
+.line::-webkit-progress-bar {
+    background: transparent;
+}
+
+
+@media screen and (max-width: 750px) {
+    .line {
+        top: 65%;
+    }
+}

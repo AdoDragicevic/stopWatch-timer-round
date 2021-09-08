@@ -1,0 +1,22 @@
+.time__display input {
+    display: inline-block; 
+    width: 70px;
+    font-size: 4rem;
+    background-color: white; 
+    color: black;
+    border: none; 
+}
+
+.time__display span {
+    display: inline-block;
+    font-size: 4rem;
+    transform: translateY(-4px);
+}
+
+.buttons button{
+    border-radius: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+    outline: none;
+    width: 60px;
+}

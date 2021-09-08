@@ -1,0 +1,11 @@
+Timer/StopWatch/Rounds
+
+Finished logic!
+
+Next steps:
+1. Design
+    - On paper
+    - Visual effects
+    - CSS
+    - Responsive design
+4. Sound (for stopWatch and Rounds)

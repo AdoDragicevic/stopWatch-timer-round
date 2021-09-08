@@ -1,0 +1,13 @@
+//I use this animation on svg elements, so they dont flash when website is first loaded
+.fade-in {
+    animation: fadeIn .4s ease-in;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

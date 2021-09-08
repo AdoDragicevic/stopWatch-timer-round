@@ -1,0 +1,38 @@
+body {
+    background-image: linear-gradient(rgba(19, 8, 8, .7), rgba(17, 9, 9, .7)), url(img/round.jpg);
+}
+
+
+.inputs-box__break:last-child {   
+    position: fixed;
+    top: 3rem;
+    right: 0;
+    text-align: left;
+}
+
+.inputs-box__break::after:last-child {
+    text-align: left;
+    color: yellow;
+}
+
+
+.inputs-box__break:last-child::before {
+    content: "";
+}
+
+/*
+.inputs-box__break:last-child {
+    position: absolute;
+    top: 1rem;
+    right: 10rem;
+    text-align: right;
+    display: inline-block;
+}
+
+.inputs-box__break:last-child::after {
+    content: "/";
+    color: inherit;
+    display: inline-block;
+    font-size: 3rem;
+}
+*/

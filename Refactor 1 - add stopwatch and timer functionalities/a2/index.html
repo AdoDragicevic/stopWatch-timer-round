@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer | StopWatch | Clock</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <div class="time">
+
+            <svg class="time__svg" width="400" height="400">
+                <circle class="svg__circle" r="190" cx="200" cy="200" fill="transparent" stroke="green" stroke-width="1" transform="rotate(-90 200 200)"></circle>
+                <line class="svg__line" x1="200" x2="200" y1="200" y2="10" stroke="orange" stroke-width="1" transform="rotate(0 200 200)"/>
+            </svg>
+    
+            <div class="time__display">
+                <input class="time__display-1" type="text" maxlength="2" value="00" disabled>
+                <span>:</span>
+                <input class="time__display-2" type="text" maxlength="2" value="00" disabled>
+                <span>:</span>
+                <input class="time__display-3" type="text" maxlength="2" value="00" disabled>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <button class="btn-left">Lap</button>
+            <button class="btn-right">Start</button>
+            <button class="btn-change">Switch</button>
+        </div>
+
+        <div class="laps">
+            <ul class="time__laps-list"></ul>
+        </div>
+
+    </main>
+
+
+    
+
+    <script src="app.js"></script>
+</body>
+</html>

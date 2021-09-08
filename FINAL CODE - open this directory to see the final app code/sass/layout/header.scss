@@ -1,0 +1,14 @@
+.header {
+    font-weight: 400;
+    font-size: 5rem;
+    margin-top: 3rem;
+    margin-left: -2.5rem;
+}
+
+@media screen and (max-height: 740px), (max-width: 920px) {
+    .header {
+        font-size: 3rem;
+        padding-left: 2rem;
+        margin-top: 2rem;
+    }
+}

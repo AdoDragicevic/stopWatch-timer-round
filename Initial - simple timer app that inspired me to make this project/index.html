@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Timer</title>
+</head>
+<body>
+
+    <!--
+        SVG
+        - has width & height
+        - like canvas for drawing shapes
+        CIRCLE
+        - one of those shapes
+        - cx & cy (center x, y) are coordinates within SVG where circle is placed
+        - origin of cx & cy is SVG(0,0), i.e. top left corner of SVG
+        - r is radius (from center to edge)
+        - diameter is distance from one edge to opposite edge (r * 2)
+        - perimeter is total lenght of the outside
+        - perimeter = 2 * PI * r
+        - fill is inside
+        - stroke is border (stroke="blue" stroke-width="15")
+        - border starts on the right side, draws clockwise
+        - to change this use transform="rotate(-90 100 100)" // degrees, x and y starting point/origin of rotate (if left 0 it will be the top left corner of SVG)
+        - stroke-dasharray="10" (gives a dashed border; first value is lenght of dashes; optional second value is spacing between dashes)
+        - if you want half of the circle to have a border, you can use dasharray and set it to diameter/2 px
+        - dash-offset addes space between border and its end (stroke-dasharray="565" stroke-dashoffset="20")
+        Formula used:
+        offset = (perimeter * timeRemaining) / totalDuration - perimeter
+    -->
+
+    <div class="timer">
+        <div class="controls">
+            <input type="text" value="10">
+            <div>
+                <button class="btn-start"><i class="fas fa-play"></i></button>
+                <button class="btn-pause"> <i class="fas fa-pause"></i></button>
+            </div>
+        </div>
+        
+        <svg class="dial">
+            <circle r="190" cx="200" cy="200" fill="transparent" stroke="green" stroke-width="10" transform="rotate(-90 200 200)"></circle>
+        </svg>
+    </div>
+
+    <script src="timer.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

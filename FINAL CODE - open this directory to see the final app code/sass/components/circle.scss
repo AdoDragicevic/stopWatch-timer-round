@@ -1,0 +1,72 @@
+.svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    visibility: visible;
+
+    &--lg {
+        width: 480px;
+        height: 480px;
+        visibility: visible;
+    }
+
+    &--md {
+        width: 285px;
+        height: 285px;
+        visibility: hidden;
+    } 
+
+    &--sm {
+        width: 260px;
+        height: 260px;
+        visibility: hidden;
+    }
+
+    &__circle {
+        fill: rgba(0, 0, 0, .6); 
+        stroke: #b30000;
+        stroke-width: 4;
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(-90deg);
+    }
+    
+}
+
+
+@media screen and (max-width: 740px), (max-height: 740px) {
+    .svg {
+        transform: translate(-50%, -59%);
+    }
+    .svg--lg {
+        visibility: hidden;
+    }
+    .svg--md {
+        visibility: visible;
+    }
+    .svg--sm {
+        visibility: hidden;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .svg--lg {
+        visibility: hidden;
+    }
+    .svg--md {
+        visibility: hidden;
+    }
+    .svg--sm {
+        visibility: visible;
+    }    
+}
+
+
+@media screen and (max-height: 400px) {
+    .svg {
+        visibility: hidden;
+    }
+}

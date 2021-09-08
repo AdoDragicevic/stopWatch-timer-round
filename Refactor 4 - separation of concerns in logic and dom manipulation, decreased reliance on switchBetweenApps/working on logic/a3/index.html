@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>StopWatch | Timer | Rounds</title>
+</head>
+<body>
+
+    <header>
+        <h1>StopWatch</h1>
+    </header>
+
+    <main>
+        <div class="display">
+            <input type="text" maxlength="2" value="00" disabled>
+            <span>:</span>
+            <input type="text" maxlength="2" value="00" disabled>
+            <span>:</span>
+            <input type="text" maxlength="2" value="00" disabled>
+        </div>
+    
+        <div class="buttons">
+            
+            <div class="main-btns">
+                <!-- basic functionality btns-->
+                <button id="reset" class="btn">Reset</button>
+                <button id="start" class="btn">Start</button>
+
+                <!--  -->
+
+                <!-- change between apps btn-->
+                <button id="btn-switch">Switch</button>
+            </div>
+        
+        </div>
+
+        <div class="laps">
+            <ul class="laps-list"></ul>
+        </div>
+
+        <div></div>
+    </main>
+    
+
+
+    <!-- Keep timer running when browser tab not active -->
+    <script src="hackTimer.js"></script>
+    <!-- prototype -->
+    <script src="time.js"></script>
+    <!-- apps -->
+    <script src="stopWatch.js"></script>
+    <script src="timer.js"></script>
+    <script src="rounds.js"></script>
+    <!-- switch between apps, add & redirect listeners -->
+    <script src="switchBetweenApps.js"></script>
+    <!-- init -->
+    <script src="app.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+html {
+    /* Default browser font-size is 16px; therefore 1 rem = 16px; now 1 rem = 10px; */
+    font-size: 62.5%;
+    height: 100%;
+}
+
+
+body {
+    box-sizing: border-box;
+    font-family: 'Monda', sans-serif;    
+    text-align: center;
+    color: #eee;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

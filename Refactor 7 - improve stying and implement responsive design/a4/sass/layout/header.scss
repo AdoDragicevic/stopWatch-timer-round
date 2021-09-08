@@ -1,0 +1,20 @@
+.header {
+    font-weight: 400;
+    font-size: 5rem;
+    margin-top: 3rem;
+}
+
+@media screen and (max-height: 740px) {
+    .header {
+        font-size: 3rem;
+        margin-top: 1.5rem;
+    }
+}
+
+
+@media screen and (max-height: 540px) {
+    .header {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+}

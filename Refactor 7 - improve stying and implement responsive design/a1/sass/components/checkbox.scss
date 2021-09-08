@@ -1,0 +1,13 @@
+.checkbox {
+    position: fixed;
+    bottom: 3vh;
+    width: 100%;
+    margin: 10px auto;
+    height: 3px;
+}
+
+@media screen and (max-width: 750px) {
+    .checkbox {
+        bottom: 10vh;
+    }
+}

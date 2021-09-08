@@ -1,0 +1,81 @@
+.buttons {
+    position: fixed;
+    bottom: 6vh;
+    width: 100%;
+    z-index: 2;
+}
+
+
+.btn {
+    border-radius: 100px;
+    height: 5rem;
+    width: 15rem;
+    outline: none;
+    font-size: 1.8rem;
+    /* background-color: rgba(233, 233, 233, .3); */
+    color: #eee;
+    text-transform: uppercase;
+    font-family: inherit;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    box-shadow: 0 1rem 4rem rgba(128, 128, 128, .1);
+    font-family: inherit;
+    margin: 1rem;
+    transition: all .4s;
+    opacity: .8;
+    -webkit-tap-highlight-color: transparent;
+
+    &:nth-of-type(1) {
+        background-color: #DEDEE3;
+        color: black;
+    }
+
+    &:nth-of-type(2) {
+        background-color:#018301;
+    }
+
+    &:nth-of-type(3) {
+        background-color: #DFA801;
+        color: black;
+    }
+
+    &:not(:last-child) {
+        margin-right: .7rem;
+    }
+    
+    &:hover {
+        box-shadow: 0 1.5rem 4rem rgba(165, 106, 106, .2);
+        cursor: pointer;
+        opacity: 1;
+    }
+    
+    
+    &:active {
+        transform: translateY(1px);
+        box-shadow: 0 .5rem 1rem rgba(128, 128, 128, .2); 
+    }
+
+}
+
+
+@media screen and (max-width: 600px) {
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 2vw;
+    }
+    .btn {
+        width: 6.8rem;
+        height: 6.8rem;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}
+
+
+@media (pointer:none), (pointer:coarse) {
+    .btn:hover {
+        box-shadow: none;
+        opacity: .8;
+    }
+}

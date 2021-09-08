@@ -1,0 +1,34 @@
+.svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+
+    &--lg {
+        width: 480px;
+        height: 480px;
+    }
+
+    &--sm {
+        width: 180px;
+        height: 280px;
+    }
+
+    &__circle {
+        fill: rgba(0, 0, 0, .6); 
+        stroke: red;
+        stroke-width: 4;
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(-90deg);
+    }
+    
+}
+
+@media (max-width: 575px) {
+    .svg {
+        width: 290px;
+        height: 290px;
+    }
+}

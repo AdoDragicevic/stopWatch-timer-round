@@ -1,0 +1,19 @@
+.laps-list {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 2rem;
+    list-style: none;
+    overflow: hidden;
+    overflow:auto;
+    height: 12.2vh;
+    width: 20rem;
+    opacity: .7;
+}
+
+
+.laps-list li:first-child {
+    color: red;
+}

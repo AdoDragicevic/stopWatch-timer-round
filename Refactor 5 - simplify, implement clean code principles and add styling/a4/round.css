@@ -1,0 +1,17 @@
+
+
+.inputs__box:last-child::before {
+    visibility: hidden;
+}
+
+
+
+/*
+.checkbox__input {
+
+}
+.inputs:hover .inputs__box:last-child {
+    display: none;
+}
+*/
+
